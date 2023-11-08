@@ -1,62 +1,54 @@
 * {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
+    color: white;
 
 }
-body {
-    width: 100%;
-    height: 100%;
+
+.home {
+    background-color: #1b0b39;
+    background-image: radial-gradient(circle at left bottom , #f3885b , transparent 30%);
+    background-repeat: no-repeat;
+    height: auto;
+
 }
 
 .header {
     display: flex;
-    /* background-image: linear-gradient(to right,#804080 ,#2f6d93, #499360 ,#dba343,#e88332,#c23820,#804080) ; */
-    /* background-image: linear-gradient(to right,#1b0b39 22%,#f2e1b2,#ec465c,#f4d454 ); */
-    background-color: #1b0b39;
-    background-image: linear-gradient(#1b0b39);
-   
-    border-bottom: 3px ;
+    
     height: 15vh;
-    opacity: 0.85;
+    
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-  
+
 }
-/* .containerIMG {
-    background-image: url(img/ideiaIMG.jpeg);
-    background-repeat: no-repeat;
-    /* background-size: 80% 120vh; */
-    /* object-fit: none;
-    height: auto; */ */
-/* } */
-.header .container{
-    /* gap: 2rem; */
-    margin-right: 20px;
-    font-size: 3vh;
-    
-    
+
+.header .container {
+   
+    font-size: 4vh;
+
+
 }
+
 .container span {
-    /* cursor: pointer;
-    transition: transform 0.3 ease;
-    display: flex; */
     margin: 10px;
     color: white;
-    
+
 }
+
 .header .logo {
     display: flex;
     align-items: center;
     justify-content: start;
     opacity: none;
     color: white;
-    /* background-image: linear-gradient(to right,#474649 ,#97444a 40%,#bf7646) ; */
 }
+
 .header img {
-    width: 9% ;
+    width: 9%;
     margin-right: 10px;
-    
+
 }
 
 a {
@@ -64,20 +56,51 @@ a {
     color: rgb(255, 255, 255);
 }
 
-.paginaInicial .container{
-    /* background-image: radial-gradient(circle at left bottom, #f2e1b2 ,#1b0b39 95%   ); */
-    background-image: url(img/ideiaIMG.jpeg);
-    background-repeat: no-repeat;
-    border-radius:500px 0px ;
-    background-size: 100% 100%;
-    background-position: 100% 0px;
-    /* background-position: 100% ; */
-    background-clip: center-box;
-    height: 1000px;
+.paginaInicial .container {
+    height: 800px;
+
+}
+
+
+.texto .titulo {
+    font-size: 54px;
+    position: relative;
+    bottom: 40px;
+
+    animation: mudarCor 3s infinite;
+    /* Aplicando a animação mudarCor */
+}
+
+@keyframes mudarCor {
+
+    0% {
+        color: #f3885b;
+
+    }
+
+    50% {
+        color: #f4d454;
+
+    }
+
+    100% {
+        color: #ec465c;
+
+    }
+}
+.texto .subTitulo{
+    font-size: 37px;
     
+}
+
+.paginaInicial .banner {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     
+}
+.paginaInicial .banner .imagem {
+    position: relative;
+    top: 50px;
     
-    
-    
-    /* width: 500px; */
 }
