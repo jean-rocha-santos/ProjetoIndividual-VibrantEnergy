@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="cadastro.css">
 </head>
 
-<body class="bodyLogin">
-    
-    <div class="containerLogin">
+<body>
+
+    <div class="containerCadastro">
         <div class="header">
             <div class="logo">
                 <img src="img/camelia-flor.png" alt="Logo VibrantEnergy">
@@ -23,7 +23,7 @@
                 <span><a href="">Curiosidades</a></span>
                 <span><a href="">Desafios</a></span>
                 <span><a href="Login.html">Login</a></span>
-                <span><a href="Cadastro.html">Cadastro</a></span>
+                <span><a href="">Cadastro</a></span>
 
             </div>
         </div>
@@ -31,39 +31,42 @@
             <div class="container">
                 <div class="formulario">
                     <div class="texto">
-                        <h2>BEM VINDO!</h2>
+                        <h2>OLÁ AMANTES DA MÚSICA!<br>
+                            VENHA SE INSCREVER NO NOSSO SITE
+                        </h2>
                         <br>
-                        <p class="frase">"A musica é meu único companheiro <br>
-                            constante, e a melodia, minha única casa."</p>
+
 
                     </div>
 
                 </div>
 
             </div>
-            
+
         </div>
-        <div class="cardLogin">
-            <img src="img/login.png" class="imagemLogin" alt="">
-            <div class="login">
-                <div class="formulario">
+        <img src="img/cadastro3.png" class="imagemCadastro" alt="">
+        <div class="cardCadastro">
+
+
+            <div class="Cadastro">
+                <div class="formularioCadastro">
                     <img src="" alt="">
+                    <p>Nome</p>
+                    <input type="text" placeholder="Jean Rocha" class="input" id="input_nome"><br>
                     <p>Email</p>
                     <input type="email" placeholder="email.exemplo@abc.com" class="input" id="input_email"><br>
                     <p>Senha</p>
-                    <input type="password" class="input" placeholder="********" id="input_senha"><br><br>
+                    <input type="password" class="input" placeholder="********" id="input_senha"><br>
+                    <p>Confirme a senha</p>
+                    <input type="password" class="input" placeholder="********" id="input_confirmacao_senha"><br>
+
 
                     <div class="botao">
                         <button class="botao" onclick="entrar()">Entrar</button>
                     </div><br>
-                    <p>OU</p><br>
-                    <div class="redes">
-                        <a href="https://accounts.spotify.com/pt-BR/login"><img src="img/Spotify_icon.svg.webp"></a>
-                        <a href="https://www.deezer.com/br/login"><img src="img/deezer.png"></a>
-                        <a href="https://music.apple.com/us/login"><img src="img/apple.png"></a>
-                    </div>
+
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -74,22 +77,36 @@
 
 <script>
     function entrar() {
-        var email= input_email.value;
+        var email = input_email.value;
         var senha = input_senha.value;
-        
+        var nome = input_nome.value;
+        var confirmacaoSenha = input_confirmacao_senha.value
 
-        if (email.indexOf("@") ==-1){
+        if (nome < 3) {
+            alert(`O nome deve conter no minimo 3 letras`)
+            return false
+        }
+        else if (email.indexOf("@") == -1) {
             alert(`O e-mail deve conter "@"`)
             return false
-            lincar=false
-        } 
-            else if (senha.length <8 ){
-                alert (`A senha deve conter 8 ou mais caracteristicas`)
-                return false
-                lincar=false
-            } else {
-                window.location.href="file:///c%3A/Users/jean_/OneDrive/Documents/atividades/VibrantEnergy/ProjetoIndividual-VibrantEnergy/Algoritmo/Site-public/index.html"
-            }
+
+        }
+        else if (email.indexOf(".") == -1) {
+            alert(`O e-mail deve conter "."`)
+            return false
+        }
+        else if (senha.length < 8) {
+            alert(`A senha deve conter 8 ou mais caracteristicas`)
+            return false
+
+        }
+        else if (confirmacaoSenha != senha ) {
+            alert(`A confirmação de senha deve ser igual a senha`)
+            return false
+
+        } else {
+            window.location.href = "file:///c%3A/Users/jean_/OneDrive/Documents/atividades/VibrantEnergy/ProjetoIndividual-VibrantEnergy/Algoritmo/Site-public/Login.html"
+        }
     }
 
 </script>
