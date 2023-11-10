@@ -7,7 +7,7 @@
 
 .home {
     background-color: #1b0b39;
-    background-image: radial-gradient(circle at left bottom , #f3885b , transparent 25%);
+    background-image: radial-gradient(circle at left bottom  , #f3885b 1% , transparent 35%),radial-gradient(circle at left bottom  , #f4d454 1% , transparent 7%);
     background-repeat: no-repeat;
     height: auto;
 
