@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibrantEnergy| Home</title>
+    <link rel="stylesheet" href="paginaInicial.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="Curiosidades.css">
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="desafio.css">
+</head>
+
+<body>
+
+    
+
+    
+    <div class="home">
+        <div class="header">
+            <div class="logo">
+                <img src="img/camelia-flor.png" alt="Logo VibrantEnergy">
+                <h2><a href="index.html"></a>VibrantEnergy</h2>
+            </div>
+            <div class="container">
+                <span><a id="link" href="index.html">Página Inicial</a></span>
+                <span><a id="link" href="#curiosidades">Curiosidades</a></span>
+                <span><a id="link" href="Desafio.html">Desafios</a></span>
+                <span><a id="link" href="Login.html">Login</a></span>
+                <span><a id="link" href="Cadastro.html">Cadastro</a></span>
+
+
+            </div>
+        </div>
+        <div class="quiz">
+            <div class="container">
+
+                <div class="texto">
+                    <div id="div_pergunta" class="container">
+                        <h2>TESTE SEU CONHECIMENTO!</h2>
+                        <button onclick="iniciar()" class="botao">Iniciar</button>
+                        
+                    </div>
+                    <div id="div_resposta" > 
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+</body>1
+<!-- Enquanto a lata chacoalhar -->
+<!-- E a ilusão for a sensação de ser mais poderoso -->
+2
+<!-- "...LIVRE PRA PODER SORRIR SIM, 
+LIVRE PRA PODER BUSCAR O MEU..." É um trecho de qual música da banda Charlie Brown Jr-->
+3
+<!-- A MÚSICA "Livin' on a Prayer" PERTENCE A : -->
+4
+<!-- QUAL NOME DO VOCALISTA DA BANDA QUEEN -->
+5
+<!-- Qual destes artistas não pertence ao grupo de RAP Racionais MC's -->
+6
+<!-- Complete a música "Em algum lugar, pra relaxar
+Eu vou ______" -->
+7
+<!-- A música "We Are The World"("Nós somos o mundo") foi criada no intuito de arrecadar fundos para -->
+8
+<!-- Qual destas não é uma música da banda Legião Urbana -->
+9
+<!-- Qual o funk brasileiro mais tocado de todos os tempos   -->
+10
+<!-- Qual destas não é uma banda ou cantor de Reggae -->
+
+</html>
+<script>
+    var listaPontos=[]
+    var listaPergunta1 = ["ILUSÃO (CRACOLÂNDIA)", "PRETOS NA MIRA", "RICO OU POBRE", "ILUSÃO"]
+    var listaPergunta2 = ["LUGAR AO SOL", "Só os loucos sabem", "Livre", "Céu Azul"]
+    var listaPergunta3 = ["GUNS N' ROSES", "NIRVANA", "BON JOVI", "RED HOT CHILI PEPPERS"]
+    var listaPergunta4 = ["FREDDIE MERCURY", "BRYAN MAY", "JOHN LENNON", "MICHAEL JACKSON"]
+    var listaPergunta5 = ["Ice Blue", "KL Jay", "Edi Rock", "Afro-X"]
+    var listaPergunta6 = ["pedir pros homens cantarem por mim", "pedir pros anjos cantarem por mim", "dormir e sossegar", "pedir pros homens se calarem por mim"]
+    var listaPergunta7 = ["Combate à fome e as doenças no continente africano", "Combate ao desmatamento das florestas no planeta", "Defesa dos povos indígenas", "Combate à pobreza e à fome;"]
+    var listaPergunta8 = ["Tempo Perdido", "Pais e filhos", "Índios", "Metamorfose ambulante"]
+    var listaPergunta9 = ["Olha a explosão", "Joga O Bum  Bum Tam Tam", "Bumbum Granada", "Glamurosa"]
+    var listaPergunta10 = ["Natirut", "Maneva", "Armandinho", "Lagum"]
+    function iniciar() {
+        div_pergunta.innerHTML = `<h2> 1º pergunta:<h2>"Enquanto a lata chacoalhar 
+E a ilusão for a sensação de ser mais poderoso" É um trecho da música.`
+        div_resposta.innerHTML = `<input class=checkbox type="checkbox">A.${listaPergunta1[0]}<br>`
+        div_resposta.innerHTML += `<input class=checkbox type="checkbox">B.${listaPergunta1[1]}<br>`
+        div_resposta.innerHTML += `<input class=checkbox type="checkbox">C.${listaPergunta1[2]}<br>`
+        div_resposta.innerHTML += `<input class=checkbox type="checkbox">D.${listaPergunta1[3]}<br>`
+
+    }
+
+
+</script>

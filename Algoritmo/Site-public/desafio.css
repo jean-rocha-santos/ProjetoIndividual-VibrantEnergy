@@ -1,0 +1,21 @@
+.quiz .container {
+    width: 40%;
+    height: 70vh;
+    background-color: black;
+    display: flex;
+    
+}
+.quiz{
+    justify-content: center;
+    display: flex;
+}
+.quiz .container .texto {
+    display: flex;
+    
+    font-size: 15px;
+    
+}
+.div_resposta{
+    display: flex;
+    flex-direction: column;
+}
