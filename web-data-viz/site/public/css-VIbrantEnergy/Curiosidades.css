@@ -1,0 +1,51 @@
+#curiosidades{
+    width: 100%;
+    
+}
+#curiosidades .container{
+    background-image: linear-gradient(to bottom,#1b0b39 3%,#7e1b33 80%,#661511);
+    height: 80%;
+    display: flex;
+}
+#curiosidades .container {
+    width: 100%;
+    justify-content: space-between;
+}
+#curiosidades .curiosidade{
+    width:100% ;
+    display: flex;
+    align-items: center;
+    
+    
+}
+#curiosidades .curiosidade img {
+    width: 300px;
+    display: flex;
+    margin: 20px;
+    border-radius: 50%;
+}
+#curiosidades .texto h2 {
+    flex-direction: column;
+    display: flex;
+    font-size: 35px;
+}
+#curiosidades .texto p{
+    font-size: 20px;
+}
+#curiosidades .curiosidade2{
+    width:100% ;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    
+    
+}
+#curiosidades .curiosidade2 img {
+    width: 30%;
+    display: flex;
+    margin: 20px;
+    border-radius: 50%;
+}
+#curiosidades .capas {
+    width: 100%;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibrantEnergy| Login</title>
+    <link rel="stylesheet" href="css-VIbrantEnergy/paginaInicial.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/cadastro.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/login.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/desafio.css">
+    
+</head>
+
+<body class="bodyLogin">
+    
+    <div class="containerLogin">
+        <div class="header">
+            <div class="logo">
+                <img src="img/camelia-flor.png" alt="Logo VibrantEnergy">
+                <h2><a href="html-VibrantEnergy/index.html"></a>VibrantEnergy</h2>
+            </div>
+            <div class="container">
+                <span><a href="html-VibrantEnergy/index.html">Página Inicial</a></span>
+                <span><a href="html-VibrantEnergy/Desafio.html">Curiosidades</a></span>
+                <span><a href="html-VibrantEnergy/Desafio.html">Desafios</a></span>
+                <span><a href="login.html">Login</a></span>
+                <span><a href="cadastro.html">Cadastro</a></span>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="container">
+                <div class="formulario">
+                    <div class="texto">
+                        <h2>BEM VINDO!</h2>
+                        <br>
+                        <p class="frase">"A musica é meu único companheiro <br>
+                            constante, e a melodia, minha única casa."</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="cardLogin">
+            <img src="img/login.png" class="imagemLogin" alt="">
+            <div class="login">
+                <div class="formulario">
+                    <img src="" alt="">
+                    <p>Email</p>
+                    <input type="email" placeholder="email.exemplo@abc.com" class="input" id="input_email"><br>
+                    <p>Senha</p>
+                    <input type="password" class="input" placeholder="********" id="input_senha"><br><br>
+
+                    <div class="botao">
+                        <button class="botao" onclick="entrar()">Entrar</button>
+                    </div><br>
+                    <p>OU</p><br>
+                    <div class="redes">
+                        <a href="https://accounts.spotify.com/pt-BR/login"><img src="img/Spotify_icon.svg.webp"></a>
+                        <a href="https://www.deezer.com/br/login"><img src="img/deezer.png"></a>
+                        <a href="https://music.apple.com/us/login"><img src="img/apple.png"></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="div_msgErro"></div>
+</body>
+
+</html>
+
+<script>
+    function entrar() {
+        aguardar();
+        var email= input_email.value;
+        var senha = input_senha.value;
+        
+
+        if (email == "" || senha == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "html-VibrantEnergy/index.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+    
+
+</script>
