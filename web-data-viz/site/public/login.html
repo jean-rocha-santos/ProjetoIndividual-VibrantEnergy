@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VibrantEnergy| Login</title>
-    <link rel="stylesheet" href="css-VIbrantEnergy/paginaInicial.css">
-    <link rel="stylesheet" href="css-VIbrantEnergy/cadastro.css">
-    <link rel="stylesheet" href="css-VIbrantEnergy/login.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/Curiosidades.css">
     <link rel="stylesheet" href="css-VIbrantEnergy/desafio.css">
-    
+    <link rel="stylesheet" href="css-VIbrantEnergy/cadastro.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/paginaInicial.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/login.css">
+    <script src="js/sessao.js"></script>
+
 </head>
 
 <body class="bodyLogin">
-    
+
     <div class="containerLogin">
         <div class="header">
             <div class="logo">
@@ -21,7 +23,7 @@
                 <h2><a href="html-VibrantEnergy/index.html"></a>VibrantEnergy</h2>
             </div>
             <div class="container">
-                <span><a href="html-VibrantEnergy/index.html">Página Inicial</a></span>
+                <span><a href="index.html">Página Inicial</a></span>
                 <span><a href="html-VibrantEnergy/Desafio.html">Curiosidades</a></span>
                 <span><a href="html-VibrantEnergy/Desafio.html">Desafios</a></span>
                 <span><a href="login.html">Login</a></span>
@@ -43,11 +45,16 @@
                 </div>
 
             </div>
-            
+
         </div>
         <div class="cardLogin">
             <img src="img/login.png" class="imagemLogin" alt="">
             <div class="login">
+                <div class="alerta_erro">
+                    <div class="card_erro" id="cardErro">
+                        <span id="mensagem_erro"></span>
+                    </div>
+                </div>
                 <div class="formulario">
                     <img src="" alt="">
                     <p>Email</p>
@@ -64,8 +71,13 @@
                         <a href="https://www.deezer.com/br/login"><img src="img/deezer.png"></a>
                         <a href="https://music.apple.com/us/login"><img src="img/apple.png"></a>
                     </div>
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/circle-loading.gif" id="loading-gif">
+                    </div>
+
+                    <div id="div_erros_login"></div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -77,9 +89,9 @@
 <script>
     function entrar() {
         aguardar();
-        var email= input_email.value;
+        var email = input_email.value;
         var senha = input_senha.value;
-        
+
 
         if (email == "" || senha == "") {
             cardErro.style.display = "block"
@@ -114,11 +126,11 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    
 
                     setTimeout(function () {
-                        window.location = "html-VibrantEnergy/index.html";
+                        window.location = "index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -144,6 +156,6 @@
         cardErro.style.display = "none"
     }
 
-    
+
 
 </script>
