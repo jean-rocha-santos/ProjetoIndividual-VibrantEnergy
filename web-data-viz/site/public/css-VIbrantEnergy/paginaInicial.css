@@ -49,14 +49,20 @@ body {
 .header img {
     width: 11%;
     margin-right: 10px;
-
 }
 
 a {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    
-    
+}
+a:hover {
+    transition: 1s;
+    box-shadow: #ec465c  0 0 8px 8px;
+    transform: scale(1.8);
+    background-color: #1b0b39;
+    border-radius: 30px 2px 30px 2px;
+    border: 0;
+    padding: 5px;
 }
 
 
@@ -107,4 +113,5 @@ a {
     top: 50px;
     
 }
+
 

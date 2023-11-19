@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibrantEnergy| Desafio</title>
+    <link rel="stylesheet" href="css-VIbrantEnergy/paginaInicial.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/login.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/cadastro.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/Curiosidades.css">
+    <link rel="stylesheet" href="css-VIbrantEnergy/desafio.css">
+</head>
+
+<body>
+
+
+
+
+    <div class="home">
+        <div class="header">
+            <div class="logo">
+                <img src="img/camelia-flor.png" alt="Logo VibrantEnergy">
+                <h2><a href="index.html"></a>VibrantEnergy</h2>
+            </div>
+            <div class="container">
+                <span><a id="link" href="index.html">Página Inicial</a></span>
+                <span><a id="link" href="index.html">Curiosidades</a></span>
+                <span><a id="link" href="Desafio.html">Desafios</a></span>
+                <span><a id="link" href="Login.html">Login</a></span>
+                <span><a id="link" href="Cadastro.html">Cadastro</a></span>
+
+
+            </div>
+        </div>
+        <div class="quiz">
+            <!-- <h2>TESTE SEU CONHECIMENTO!</h2> -->
+            <div class="container">
+
+                <div class="pergunta hide" id="desafio">
+                    <span id="questao">pergunte aq</span><br><br>
+                    <div id="div_resposta" class="div_resposta">
+                        <button onclick="clique()" class="alternativa" id="alternativa1"></button>
+                        <button onclick="clique()" class="alternativa" id="alternativa2"></button>
+                        <button onclick="clique()" class="alternativa" id="alternativa3"></button>
+                        <button onclick="clique()" class="alternativa" id="alternativa4"></button>
+                    </div>
+                </div>
+                <div class="controleContainer">
+                    <button onclick="iniciar()" id="ocultar" class="startdesafio">Iniciar</button>
+                    <button onclick="proximaPergunta()" class="proximaPergunta hide" id="botaoDesafio">Próxima
+                        pergunta</button>
+                </div>
+
+
+            </div>
+            <div id="imgDesafio1"><img class="imgDesafio1" src="img/desafioImg.png" alt=""></div>
+        </div>
+
+</body>
+
+</html>
+<script>
+
+    var listaPontos = Number([])
+    var listaPergunta1 = ["ILUSÃO (CRACOLÂNDIA)", "PRETOS NA MIRA", "RICO OU POBRE", "ILUSÃO"]
+    var listaPergunta2 = ["GUNS N' ROSES", "NIRVANA", "BON JOVI", "RED HOT CHILI PEPPERS"]
+    var listaPergunta3 = ["LUGAR AO SOL", "Só os loucos sabem", "Livre", "Céu Azul"]
+    var listaPergunta4 = ["FREDDIE MERCURY", "BRYAN MAY", "JOHN LENNON", "MICHAEL JACKSON"]
+    var listaPergunta5 = ["Ice Blue", "KL Jay", "Edi Rock", "Afro-X"]
+    var listaPergunta6 = ["pedir pros homens cantarem por mim", "pedir pros anjos cantarem por mim", "dormir e sossegar", "pedir pros homens se calarem por mim"]
+    var listaPergunta7 = ["Combate ao desmatamento das florestas no planeta", "Defesa dos povos indígenas", "Combate à fome e as doenças no continente africano", "Combate à pobreza e à fome mundial"]
+    var listaPergunta8 = ["Tempo Perdido", "Pais e filhos", "Índios", "Metamorfose ambulante"]
+    var listaPergunta9 = ["Olha a explosão", "Joga O Bum  Bum Tam Tam", "Bumbum Granada", "Glamurosa"]
+    var listaPergunta10 = ["Natiruts", "Maneva", "Armandinho", "Banda do Mar"]
+
+    // document=fornece uma interface para interagir com a estrutura e os elementos da página web
+    // document.getElementById=Retorna uma referência ao elemento com o ID especificado.
+    var inicioDesafio = document.getElementById("ocultar");
+    var desocultar = document.getElementById("desafio");
+    var desocultar2 = document.getElementById("botaoDesafio");
+    var perguntaAtual = 0
+    var textoQuestao = document.getElementById("questao");
+    var alternativa1 = document.getElementById("alternativa1")
+    var alternativa2 = document.getElementById("alternativa2")
+    var alternativa3 = document.getElementById("alternativa3")
+    var alternativa4 = document.getElementById("alternativa4")
+    var divResposta = document.getElementById("div_resposta")
+    function iniciar() {
+        inicioDesafio.style.display = "none";
+        desocultar.style.display = "block"
+        desocultar2.style.display = "block"
+
+        alternativa1.textContent = listaPerguntas[perguntaAtual].answers[0].text
+        alternativa2.textContent = listaPerguntas[perguntaAtual].answers[1].text
+        alternativa3.textContent = listaPerguntas[perguntaAtual].answers[2].text
+        alternativa4.textContent = listaPerguntas[perguntaAtual].answers[3].text
+        textoQuestao.textContent = listaPerguntas[perguntaAtual].question
+
+    }
+
+    function proximaPergunta() {
+        if (perguntaAtual == 9) {
+            desocultar.style.display = "none"
+            desocultar2.style.display = "none"
+            textoQuestao.style.display = "none"
+        }
+        // firstChild= representa qualquer elemento que seja o primeiro filho de seus pais.
+        for (var repeticao = 1; repeticao <= 4; repeticao += 1) {
+            divResposta.removeChild(divResposta.firstElementChild);
+        }
+        perguntaAtual += 1
+        textoQuestao.textContent = listaPerguntas[perguntaAtual].question
+        listaPerguntas[perguntaAtual].answers.forEach(answers => {
+            // createElement= Cria um novo elemento com a tag HTML especificada.
+            const novaResposta = document.createElement("button")
+            novaResposta.classList.add("alternativa")
+            novaResposta.textContent = answers.text;
+            if (answers.correct) {
+                // dataset= acessar e manipular atributos de dados personalizados em elementos HTML
+                novaResposta.dataset.correct = answers.correct
+
+            }
+
+            //appendChild= adicionar elementos ao HTML de forma dinâmica
+            divResposta.appendChild(novaResposta)
+            novaResposta.addEventListener("click", selecionarResposta)
+            
+        });
+    }
+ 
+    function selecionarResposta(event) {
+        var cliqueResposta = event.target;
+        document.querySelectorAll(".alternativa").forEach(button =>{
+            if (button.dataset.correct){
+                button.classList.add("correct")
+                listaPontos+=1
+            } else {
+                button.classList.add("incorrect")
+            }
+        })
+        
+    }
+    const listaPerguntas = [
+        {
+            question: "1) O trecho 'Enquanto a lata chacoalhar e a ilusão for a sensação de ser mais poderoso...' pertence a qual música:",
+            answers: [
+                { text: `A. ${listaPergunta1[0]}`, correct: true },
+                { text: `B. ${listaPergunta1[1]}`, correct: false },
+                { text: `C. ${listaPergunta1[2]}`, correct: false },
+                { text: `D. ${listaPergunta1[3]}`, correct: false }
+            ]
+        },
+        {
+            question: "2) A MÚSICA Livin' on a Prayer PERTENCE a :",
+            answers: [
+                { text: "A. " + listaPergunta2[0], correct: false },
+                { text: "B. " + listaPergunta2[1], correct: false },
+                { text: "C. " + listaPergunta2[2], correct: true },
+                { text: "D. " + listaPergunta2[3], correct: false }
+            ]
+        },
+        {
+            question: "3) ....Livre pra poder sorrir sim, livre pra poder buscar o meu lugar... É um trecho de qual música da banda Charlie Brown Jr:",
+            answers: [
+                { text: "A. " + listaPergunta3[0], correct: true },
+                { text: "B. " + listaPergunta3[1], correct: false },
+                { text: "C. " + listaPergunta3[2], correct: false },
+                { text: "D. " + listaPergunta3[3], correct: false }
+            ]
+        },
+        {
+            question: "4) Qual o nome do vocalista de banda Queen:",
+            answers: [
+                { text: "A. " + listaPergunta4[0], correct: true },
+                { text: "B. " + listaPergunta4[1], correct: false },
+                { text: "C. " + listaPergunta4[2], correct: false },
+                { text: "D. " + listaPergunta4[3], correct: false }
+            ]
+        },
+        {
+            question: "5) Qual destes artistas não pertence ao grupo de RAP Racionais MC's:",
+            answers: [
+                { text: "A. " + listaPergunta5[0], correct: false },
+                { text: "B. " + listaPergunta5[1], correct: false },
+                { text: "C. " + listaPergunta5[2], correct: false },
+                { text: "D. " + listaPergunta5[3], correct: true }
+            ]
+        },
+        {
+            question: "6) Complete a música 'Em algum lugar, pra relaxar, eu vou ______...':",
+            answers: [
+                { text: "A. " + listaPergunta6[0], correct: false },
+                { text: "B. " + listaPergunta6[1], correct: true },
+                { text: "C. " + listaPergunta6[2], correct: false },
+                { text: "D. " + listaPergunta6[3], correct: false }
+            ]
+        },
+        {
+            question: "7) A música 'We Are The World'(Nós somos o mundo) foi criada no intuito de arrecadar fundos para:",
+            answers: [
+                { text: "A. " + listaPergunta7[0], correct: false },
+                { text: "B. " + listaPergunta7[1], correct: false },
+                { text: "C. " + listaPergunta7[2], correct: true },
+                { text: "D. " + listaPergunta7[3], correct: false }
+            ]
+        },
+        {
+            question: "8) Qual destas não é uma música da banda Legião Urbana:",
+            answers: [
+                { text: "A. " + listaPergunta8[0], correct: false },
+                { text: "B. " + listaPergunta8[1], correct: false },
+                { text: "C. " + listaPergunta8[2], correct: false },
+                { text: "D. " + listaPergunta8[3], correct: true }
+            ]
+        },
+        {
+            question: "9) Qual o funk brasileiro mais tocado de todos os tempos:",
+            answers: [
+                { text: "A. " + listaPergunta9[0], correct: false },
+                { text: "B. " + listaPergunta9[1], correct: true },
+                { text: "C. " + listaPergunta9[2], correct: false },
+                { text: "D. " + listaPergunta9[3], correct: false }
+            ]
+        },
+        {
+            question: "10) Qual destas não é uma banda ou cantor de Reggae:",
+            answers: [
+                { text: "A. " + listaPergunta10[0], correct: false },
+                { text: "B. " + listaPergunta10[1], correct: false },
+                { text: "C. " + listaPergunta10[2], correct: false },
+                { text: "D. " + listaPergunta10[3], correct: true }
+            ]
+        }
+    ]
+
+</script>
