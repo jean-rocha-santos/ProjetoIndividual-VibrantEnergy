@@ -37,24 +37,51 @@
             <!-- <h2>TESTE SEU CONHECIMENTO!</h2> -->
             <div class="container">
 
-                <div class="pergunta hide" id="desafio">
-                    <span id="questao">pergunte aq</span><br><br>
-                    <div id="div_resposta" class="div_resposta">
-                        <button onclick="clique()" class="alternativa" id="alternativa1"></button>
-                        <button onclick="clique()" class="alternativa" id="alternativa2"></button>
-                        <button onclick="clique()" class="alternativa" id="alternativa3"></button>
-                        <button onclick="clique()" class="alternativa" id="alternativa4"></button>
+                <div id="tipoOuvinte">
+                    <div id="fraseDevoto">
+                        <h2 class="subtituloQuiz">Você é um ouvinte DEVOTO! </h2>
+                        <span>Fiel ao que gosta , não costuma ouvir algo novo e cai de cabeça no que gosta</span>
+                        <img class="imgOuvinte" src="img/cerebroDevoto.png" alt="">
+                        <span id="pontuacao1">Pontuação: </span>
                     </div>
+                    <div id="fraseVisitante">
+                        <h2 class="subtituloQuiz">Você é um ouvinte VISITANTE!</h2>
+                        <span>Você possui seus gostos que você não larga, más está aberto a coisas novas</span>
+                        <img class="imgOuvinte" src="img/cerebroVisitante.png" alt="">
+                        <span id="pontuacao2">Pontuação: </span>
+                    </div>
+                    <div id="fraseEspecialista">
+                        <h2 class="subtituloQuiz">Você é um ouvinte ESPECIALISTA!</h2>
+                        <span> tem muito conhecimento sobre todos os estilos.</span>
+                        <img class="imgOuvinte" src="img/cerebroEspecialista.png" alt="">
+                        <span id="pontuacao3">Pontuação: </span>
+                    </div>
+                    <div id="fraseNomade">
+                        <h2 class="subtituloQuiz">Você é um ouvinte NOMADE! </h2>
+                        <span>não escuta somente um estilo de música, você não para, demonstrou ter dominio sobre todos
+                            estilos !</span>
+                            <img class="imgOuvinte" src="img/cerebroNomade.png" alt="">
+                            <span id="pontuacao4">Pontuação: </span>
+                    </div>
+                </div>
+                <div class="pergunta hide" id="desafio">
+                    <span id="questao">São 4 alternativas e apenas uma chance para cada pergunta! Clique em "Próxima
+                        pergunta" para começar</span><br><br>
+                    <div id="div_resposta" class="div_resposta">
+                        <button onclick="clique()" class="alternativa" id="alternativa1">A</button>
+                        <button onclick="clique()" class="alternativa" id="alternativa2">B</button>
+                        <button onclick="clique()" class="alternativa" id="alternativa3">C</button>
+                        <button onclick="clique()" class="alternativa" id="alternativa4">D</button>
+                    </div>
+                    <div id="div_exibir"></div>
                 </div>
                 <div class="controleContainer">
                     <button onclick="iniciar()" id="ocultar" class="startdesafio">Iniciar</button>
                     <button onclick="proximaPergunta()" class="proximaPergunta hide" id="botaoDesafio">Próxima
                         pergunta</button>
                 </div>
-
-
             </div>
-            <div id="imgDesafio1"><img class="imgDesafio1" src="img/desafioImg.png" alt=""></div>
+            <!-- <div id="imgDesafio1"><img class="imgDesafio1" src="" alt=""></div> -->
         </div>
 
 </body>
@@ -62,16 +89,16 @@
 </html>
 <script>
 
-    var listaPontos = Number([])
+    var pontos = 0
     var listaPergunta1 = ["ILUSÃO (CRACOLÂNDIA)", "PRETOS NA MIRA", "RICO OU POBRE", "ILUSÃO"]
     var listaPergunta2 = ["GUNS N' ROSES", "NIRVANA", "BON JOVI", "RED HOT CHILI PEPPERS"]
-    var listaPergunta3 = ["LUGAR AO SOL", "Só os loucos sabem", "Livre", "Céu Azul"]
+    var listaPergunta3 = ["Lugar ao sol", "Só os loucos sabem", "Livre", "Céu Azul"]
     var listaPergunta4 = ["FREDDIE MERCURY", "BRYAN MAY", "JOHN LENNON", "MICHAEL JACKSON"]
     var listaPergunta5 = ["Ice Blue", "KL Jay", "Edi Rock", "Afro-X"]
     var listaPergunta6 = ["pedir pros homens cantarem por mim", "pedir pros anjos cantarem por mim", "dormir e sossegar", "pedir pros homens se calarem por mim"]
     var listaPergunta7 = ["Combate ao desmatamento das florestas no planeta", "Defesa dos povos indígenas", "Combate à fome e as doenças no continente africano", "Combate à pobreza e à fome mundial"]
     var listaPergunta8 = ["Tempo Perdido", "Pais e filhos", "Índios", "Metamorfose ambulante"]
-    var listaPergunta9 = ["Olha a explosão", "Joga O Bum  Bum Tam Tam", "Bumbum Granada", "Glamurosa"]
+    var listaPergunta9 = ["Olha a explosão", "Bum Bum Tam Tam", "Bumbum Granada", "Glamurosa"]
     var listaPergunta10 = ["Natiruts", "Maneva", "Armandinho", "Banda do Mar"]
 
     // document=fornece uma interface para interagir com a estrutura e os elementos da página web
@@ -81,41 +108,46 @@
     var desocultar2 = document.getElementById("botaoDesafio");
     var perguntaAtual = 0
     var textoQuestao = document.getElementById("questao");
-    var alternativa1 = document.getElementById("alternativa1")
-    var alternativa2 = document.getElementById("alternativa2")
-    var alternativa3 = document.getElementById("alternativa3")
-    var alternativa4 = document.getElementById("alternativa4")
-    var divResposta = document.getElementById("div_resposta")
+    var alternativa1 = document.getElementById("alternativa1");
+    var alternativa2 = document.getElementById("alternativa2");
+    var alternativa3 = document.getElementById("alternativa3");
+    var alternativa4 = document.getElementById("alternativa4");
+    var divResposta = document.getElementById("div_resposta");
+    var exibir = document.getElementById("div_exibir");
+    var ouvinte = document.getElementById("tipoOuvinte")
     function iniciar() {
         inicioDesafio.style.display = "none";
         desocultar.style.display = "block"
         desocultar2.style.display = "block"
-
-        alternativa1.textContent = listaPerguntas[perguntaAtual].answers[0].text
-        alternativa2.textContent = listaPerguntas[perguntaAtual].answers[1].text
-        alternativa3.textContent = listaPerguntas[perguntaAtual].answers[2].text
-        alternativa4.textContent = listaPerguntas[perguntaAtual].answers[3].text
-        textoQuestao.textContent = listaPerguntas[perguntaAtual].question
-
     }
 
     function proximaPergunta() {
-        if (perguntaAtual == 9) {
+        if (perguntaAtual == 10) {
             desocultar.style.display = "none"
             desocultar2.style.display = "none"
             textoQuestao.style.display = "none"
+            exibir.style.display = "block"
+
+            ouvinte.style.display = "block"
+            return jogoEncerrado();
         }
+        desocultar.style.display = "block"
+        // desocultar2.style.display = "block"
+
         // firstChild= representa qualquer elemento que seja o primeiro filho de seus pais.
+        // removendo respostas antigas
+
         for (var repeticao = 1; repeticao <= 4; repeticao += 1) {
             divResposta.removeChild(divResposta.firstElementChild);
         }
-        perguntaAtual += 1
         textoQuestao.textContent = listaPerguntas[perguntaAtual].question
+        // forEach= utilizado sempre que queremos que uma determinada função seja aplicada em todos os elementos de um array, pois elimina a necessidade de escrevermos muitas linhas de códigos.
         listaPerguntas[perguntaAtual].answers.forEach(answers => {
             // createElement= Cria um novo elemento com a tag HTML especificada.
             const novaResposta = document.createElement("button")
             novaResposta.classList.add("alternativa")
             novaResposta.textContent = answers.text;
+
             if (answers.correct) {
                 // dataset= acessar e manipular atributos de dados personalizados em elementos HTML
                 novaResposta.dataset.correct = answers.correct
@@ -125,21 +157,51 @@
             //appendChild= adicionar elementos ao HTML de forma dinâmica
             divResposta.appendChild(novaResposta)
             novaResposta.addEventListener("click", selecionarResposta)
-            
+
         });
     }
- 
-    function selecionarResposta(event) {
-        var cliqueResposta = event.target;
-        document.querySelectorAll(".alternativa").forEach(button =>{
-            if (button.dataset.correct){
+
+    function selecionarResposta() {
+        var respostaClicada = event.target
+        perguntaAtual += 1
+        document.querySelectorAll(".alternativa").forEach(button => {
+            // O dataset é uma propriedade dos elementos HTML que permite armazenar dados personalizados
+
+            if (button.dataset.correct) {
                 button.classList.add("correct")
-                listaPontos+=1
+
             } else {
                 button.classList.add("incorrect")
             }
+            button.disabled = true
+
         })
-        
+        if (respostaClicada.dataset.correct) {
+            pontos += 1
+        }
+    }
+    var devoto = document.getElementById("fraseDevoto");
+    var visitante = document.getElementById("fraseVisitante");
+    var especialista = document.getElementById("fraseEspecialista");
+    var nomade = document.getElementById("fraseNomade");
+    function jogoEncerrado() {
+        ouvinte.style.display = "flex"
+
+        if (pontos <= 3) {
+            devoto.style.display = "flex"
+            pontuacao1.innerHTML+= `${pontos}/10`
+        } else if (pontos <= 6) {
+            visitante.style.display = "flex"
+            pontuacao2.innerHTML+= `${pontos}/10`
+        }
+        else if (pontos <= 9) {
+            especialista.style.display = "flex"
+            pontuacao3.innerHTML+= `${pontos}/10`         
+        } else {
+            nomade.style.display = "flex"
+            pontuacao4.innerHTML+= `${pontos}/10`          
+        }
+
     }
     const listaPerguntas = [
         {

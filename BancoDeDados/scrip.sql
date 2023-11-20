@@ -5,12 +5,12 @@ use vibrantEnergy;
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
-email varchar(60),
-senha varchar(12))
+email varchar(60) unique,
+senha varchar(16))
 auto_increment=1;
 
 create table ranking (
-idPontuacao int primary key auto_increment ,
+idRanking int primary key auto_increment ,
 pontuacao int,
 fkUsuario int, constraint fkUsuario foreign key (fkUsuario)
 references usuario(idUsuario));
