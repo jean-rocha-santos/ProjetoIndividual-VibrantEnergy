@@ -1,0 +1,42 @@
+.containerRanking {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.ranking{
+    
+    width: 60%;
+    height: 600px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
+.ranking .formulario {
+    display: grid;
+    grid-template-columns: 4fr;
+    gap: 16px;
+    background-color: black;
+    width: 70%;
+    height: 85%;
+    border-radius: 16px;
+
+}
+.textoRank{
+    margin: 15px;
+    width: 230px;
+    display: flex;
+    text-align: center;
+}
+.coroaImg{
+    position: absolute;
+    width: 150px;
+    left: 80px;
+}
+.fundoRank {
+    width: 40%;
+    border-radius: 50% 0 0 50%;
+}

@@ -34,8 +34,9 @@
             </div>
         </div>
         <div class="quiz">
-            <!-- <h2>TESTE SEU CONHECIMENTO!</h2> -->
+            <h1>TESTE SEU CONHECIMENTO!</h1>
             <div class="container">
+                    <div class="divRank"><a href="ranking.html" id="linkRank"><h3>Acesse o ranking!</h3> <img src="img/ranking.png" class="imagemTrofeu" alt=""></a></div>
 
                 <div id="tipoOuvinte">
                     <div id="fraseDevoto">
@@ -81,7 +82,7 @@
                         pergunta</button>
                 </div>
             </div>
-            <!-- <div id="imgDesafio1"><img class="imgDesafio1" src="" alt=""></div> -->
+            <div id="imgDesafio1"><img class="imgDesafio1" src="" alt=""></div>
         </div>
 
 </body>
@@ -115,10 +116,12 @@
     var divResposta = document.getElementById("div_resposta");
     var exibir = document.getElementById("div_exibir");
     var ouvinte = document.getElementById("tipoOuvinte")
+    var rankingDisplay= document.getElementById("linkRank")
     function iniciar() {
         inicioDesafio.style.display = "none";
         desocultar.style.display = "block"
         desocultar2.style.display = "block"
+        rankingDisplay.style.display ="none"
     }
 
     function proximaPergunta() {
@@ -186,7 +189,7 @@
     var nomade = document.getElementById("fraseNomade");
     function jogoEncerrado() {
         ouvinte.style.display = "flex"
-
+        rankingDisplay.style.display ="flex"
         if (pontos <= 3) {
             devoto.style.display = "flex"
             pontuacao1.innerHTML+= `${pontos}/10`
