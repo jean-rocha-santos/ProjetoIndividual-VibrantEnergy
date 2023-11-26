@@ -22,7 +22,17 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucao);
 }
 
+function jogoEncerrado(pontos) {
+    var instrucao = `
+    INSERT INTO ranking (pontuacao) VALUES ('${pontos}');
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    jogoEncerrado,
 };

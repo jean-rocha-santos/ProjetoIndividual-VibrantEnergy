@@ -36,7 +36,9 @@
         <div class="quiz">
             <h1>TESTE SEU CONHECIMENTO!</h1>
             <div class="container">
-                    <div class="divRank"><a href="ranking.html" id="linkRank"><h3>Acesse o ranking!</h3> <img src="img/ranking.png" class="imagemTrofeu" alt=""></a></div>
+                <div class="divRank"><a href="ranking.html" id="linkRank">
+                        <h3>Acesse o ranking!</h3> <img src="img/ranking.png" class="imagemTrofeu" alt="">
+                    </a></div>
 
                 <div id="tipoOuvinte">
                     <div id="fraseDevoto">
@@ -61,8 +63,8 @@
                         <h2 class="subtituloQuiz">Você é um ouvinte NOMADE! </h2>
                         <span>não escuta somente um estilo de música, você não para, demonstrou ter dominio sobre todos
                             estilos !</span>
-                            <img class="imgOuvinte" src="img/cerebroNomade.png" alt="">
-                            <span id="pontuacao4">Pontuação: </span>
+                        <img class="imgOuvinte" src="img/cerebroNomade.png" alt="">
+                        <span id="pontuacao4">Pontuação: </span>
                     </div>
                 </div>
                 <div class="pergunta hide" id="desafio">
@@ -116,12 +118,12 @@
     var divResposta = document.getElementById("div_resposta");
     var exibir = document.getElementById("div_exibir");
     var ouvinte = document.getElementById("tipoOuvinte")
-    var rankingDisplay= document.getElementById("linkRank")
+    var rankingDisplay = document.getElementById("linkRank")
     function iniciar() {
         inicioDesafio.style.display = "none";
         desocultar.style.display = "block"
         desocultar2.style.display = "block"
-        rankingDisplay.style.display ="none"
+        rankingDisplay.style.display = "none"
     }
 
     function proximaPergunta() {
@@ -187,24 +189,52 @@
     var visitante = document.getElementById("fraseVisitante");
     var especialista = document.getElementById("fraseEspecialista");
     var nomade = document.getElementById("fraseNomade");
+
     function jogoEncerrado() {
         ouvinte.style.display = "flex"
-        rankingDisplay.style.display ="flex"
+        rankingDisplay.style.display = "flex"
         if (pontos <= 3) {
             devoto.style.display = "flex"
-            pontuacao1.innerHTML+= `${pontos}/10`
+            pontuacao1.innerHTML += `${pontos}/10`
         } else if (pontos <= 6) {
             visitante.style.display = "flex"
-            pontuacao2.innerHTML+= `${pontos}/10`
+            pontuacao2.innerHTML += `${pontos}/10`
         }
         else if (pontos <= 9) {
             especialista.style.display = "flex"
-            pontuacao3.innerHTML+= `${pontos}/10`         
+            pontuacao3.innerHTML += `${pontos}/10`
         } else {
             nomade.style.display = "flex"
-            pontuacao4.innerHTML+= `${pontos}/10`          
+            pontuacao4.innerHTML += `${pontos}/10`
         }
+        // tentativa passar para banco
 
+        fetch("/usuarios/jogoEncerrado", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                pontosServer: pontos
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                }
+            })
     }
     const listaPerguntas = [
         {

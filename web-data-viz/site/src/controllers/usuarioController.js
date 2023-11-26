@@ -79,8 +79,31 @@ function cadastrar(req, res) {
             );
     }
 }
+function jogoEncerrado(req,res){
+    var pontos = req.body.pontosServer;
+    usuarioModel.desafio(pontos)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    )
+                    if(erro.sqlMessage==`Duplicate entry '${email}' for key 'usuario.email'`){
+                        res.status(400).json(erro.sqlMessage);
+                    }else {
+                    res.status(500).json(erro.sqlMessage);}
+                }
+            );
+
+}
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    jogoEncerrado
 }

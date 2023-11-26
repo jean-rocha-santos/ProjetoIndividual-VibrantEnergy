@@ -13,4 +13,9 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/jogoEncerrado", function (req, res){
+    usuarioController.jogoEncerrado(req,res);
+});
+
+
 module.exports = router;
