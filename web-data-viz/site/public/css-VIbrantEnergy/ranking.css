@@ -22,7 +22,7 @@
     background-color: black;
     width: 70%;
     height: 85%;
-    border-radius: 16px;
+    border-radius: 35px;
 
 }
 .textoRank{
@@ -34,7 +34,11 @@
 .coroaImg{
     position: absolute;
     width: 150px;
-    left: 80px;
+    left: 65px;
+    transform: rotateZ(-30deg);
+    top: 130px;
+    background-color: #1b0b39;
+    border-radius: 0 0 50% 50%;
 }
 .fundoRank {
     width: 40%;
