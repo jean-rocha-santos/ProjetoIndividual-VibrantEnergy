@@ -13,9 +13,17 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.post("/jogoEncerrado", function (req, res){
+router.post("/jogoEncerrado", function (req, res) {
     usuarioController.jogoEncerrado(req,res);
 });
-
+router.get("/mostrarRanking", function (req, res) {
+    usuarioController.mostrarRanking(req,res);
+});
+router.post("/recomendar", function (req, res) {
+    usuarioController.recomendar(req,res);
+});
+router.get("/musicaRecomendada", function (req, res) {
+    usuarioController.musicaRecomendada(req,res);
+});
 
 module.exports = router;

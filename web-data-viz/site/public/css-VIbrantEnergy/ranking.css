@@ -7,7 +7,7 @@
 
 .ranking{
     
-    width: 60%;
+    width: 90%;
     height: 600px;
     display: flex;
     justify-content: space-between;
@@ -16,14 +16,19 @@
     align-self: center;
 }
 .ranking .formulario {
-    display: grid;
-    grid-template-columns: 4fr;
+    display: flex;
+    justify-content: start;
     gap: 16px;
     background-color: black;
     width: 70%;
     height: 85%;
     border-radius: 35px;
-
+    padding: 15px;
+    gap: 8px;
+}
+.colunas {
+    background-color: rgb(193, 0, 0);
+    width: 100px;
 }
 .textoRank{
     margin: 15px;
@@ -34,7 +39,7 @@
 .coroaImg{
     position: absolute;
     width: 150px;
-    left: 65px;
+    left: 225px;
     transform: rotateZ(-30deg);
     top: 130px;
     background-color: #1b0b39;
@@ -43,4 +48,30 @@
 .fundoRank {
     width: 40%;
     border-radius: 50% 0 0 50%;
+}
+.colunas {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.campoRank{
+    border-right: 2px solid black;
+    
+}
+#posicaoRanking{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    
+}
+#posicaoUsuario{
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    line-height: 40px;
+    border-right: 2px solid black;
 }

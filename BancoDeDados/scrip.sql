@@ -12,15 +12,18 @@ auto_increment=1;
 create table ranking (
 idRanking int primary key auto_increment ,
 pontuacao int,
+dataTentativa date, 
 fkUsuario int, constraint fkUsuario foreign key (fkUsuario)
 references usuario(idUsuario));
 
 
 create table recomendacao (
-idRecomendacao int primary key auto_increment,
+idRecomendacao int auto_increment,
 nomeMusica varchar(45),
 bandaCantor varchar(45),
-fkUsuario int , constraint fkUsuario2 foreign key (fkUsuario)
+fkUsuario int ,
+primary key (idRecomendacao, fkUsuario),
+ constraint fkUsuario2 foreign key (fkUsuario)
 references usuario(idUsuario));
 
 select * from usuario;

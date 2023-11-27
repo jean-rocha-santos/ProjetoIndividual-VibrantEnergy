@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css-VIbrantEnergy/ranking.css">
 </head>
 
-<div class="containerCadastro">
+<body onload="mostrarRanking()">
     <div class="header">
         <div class="logo">
             <img src="img/camelia-flor.png" alt="Logo VibrantEnergy">
@@ -25,18 +25,64 @@
             <span><a href="login.html">Login</a></span>
             <span><a href="Cadastro.html">Cadastro</a></span>
 
-
         </div>
     </div>
-</div>
-<div class="containerRanking">
-    <div class="ranking">
-        <h1 class="textoRank" ><img src="img/ranking.png" class="imagemTrofeu" alt="">RANKING<img src="img/ranking.png" class="imagemTrofeu" alt=""></h1>
-        <img src="img/coroa (2).png " class="coroaImg" alt="">
-        <div class="formulario">
-
+    <div class="containerRanking">
+        <div class="ranking">
+            <h1 class="textoRank"><img src="img/ranking.png" class="imagemTrofeu" alt="">RANKING<img
+                    src="img/ranking.png" class="imagemTrofeu" alt=""></h1>
+            <img src="img/coroa (2).png " class="coroaImg" alt="">
+            <div class="formulario" id="div_exibir" style="color: white;">
+                <div class="colunas">
+                    <div  id="posicaoRanking"> Posicão <br>
+                        <div id="posicaoUsuario">
+                            1 <br>2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 10
+                        </div>
+                    </div>
+                    <div class="campoRank" id="nomeUsuario">Nome usuário <br>
+                        <div id="nomeRank"></div>
+                    </div>
+                    <div class="campoRank" id="pontosFeitos">Pontos <br>
+                        <div id="pontosRank"></div>
+                    </div>
+                    <div class="campoRank" id="tipoOuvinte">Tipo Ouvinte <br>
+                    <div id="tipoRank"></div></div>
+                    <div class="campoRank" id="porcentagemPosicao"> Porcentagem posição</div>
+                    <div class="campoRank" id="dataTentativa">Data Tentativa <br>
+                    <div id="dataTentativaRank"></div></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <img src="img/rankFundo.jpeg" class="fundoRank" alt="">
+        <!-- <img src="img/rankFundo.jpeg" class="fundoRank" alt=""> -->
 
-</div>
+</body>
+
+</html>
+
+<script>
+
+    async function mostrarRanking() {
+
+        var ranking = await fetch("/usuarios/mostrarRanking", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(res => res.json())
+        for (var posicao = 0; posicao < ranking.length; posicao += 1) {
+            resultadoRanking(ranking[posicao])
+        }
+    }
+
+
+    function resultadoRanking(rank) {
+
+        console.log(rank)
+        nomeRank.innerHTML += `${rank.nome}<br>`
+        pontosRank.innerHTML+=`${rank.pontuacao}<br>`
+        // tipoRank.innerHTML+=`${rank.}`
+
+        dataTentativaRank.innerHTML+=`${rank.dataTentativa}<br>`
+
+    }
+</script>

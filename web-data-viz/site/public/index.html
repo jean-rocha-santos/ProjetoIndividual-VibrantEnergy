@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css-VIbrantEnergy/login.css">
 </head>
 
-<body>
+<body onload="musicaRecomendada()">
     <div class="home">
         <div class="header">
             <div class="logo">
@@ -35,12 +35,15 @@
                         <h1 class="titulo">BOAS VIBRAÇÕES <br>
                             SÃO CONTAGIANTES!</h1>
                         <h2 class="subTitulo">A música faz parte da sua vida? </h2><br><br><br>
-                        
-                        <div class="recomendacao"><h3>Recomende você também uma música!</h3><br>
+
+                        <div class="recomendacao">
+                            <h3>Recomende você também uma música!</h3><br>
                             <input type="text" class="input" placeholder="Nome da musica" id="input_nomeMusica"><br><br>
-                            <input type="text" class="input" placeholder="Nome do cantor ou banda" id="input_nomeCantor">
-                            
-    
+                            <input type="text" class="input" placeholder="Nome do cantor ou banda"
+                                id="input_nomeCantor"><br><br>
+                                <button onclick="recomendar()" class="botao">Recomendar</button>
+
+
                         </div>
                     </div>
                     <div class="imagem">
@@ -114,10 +117,12 @@
                     <div class="texto">
                         <h2>Origem nome Pagode</h2>
                         <p>O pagode surgiu das festas e comemorações feitas nos fundos dos quintais do subúrbio carioca,
-                            <br> nas quais se cantava as alegrias e os lamentos das pessoas que lá viviam.Historicamente,
+                            <br> nas quais se cantava as alegrias e os lamentos das pessoas que lá
+                            viviam.Historicamente,
                             <br> pagode era o nome das festas de escravos nas senzalas. No Rio de Janeiro,
                             <br>o morro e a malandragem lhe deram outro significado, consagrado no final da década de
-                           <br> 70, que significava festa regada a muita comida, bebida e samba.</p>
+                            <br> 70, que significava festa regada a muita comida, bebida e samba.
+                        </p>
 
                     </div>
 
@@ -143,6 +148,40 @@
 
 </html>
 <script>
+    function recomendar(){
+        var fkUsuario = sessionStorage.getItem('ID_USUARIO')
+        var nomeMusica= input_nomeMusica.value;
+        var nomeBandaCantor= input_nomeCantor.value;
+        if (fkUsuario >0){
+        fetch("/usuarios/recomendar", {
+            method: "POST",
+            headers:  {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeMusicaServer: nomeMusica,
+                nomeBandaCantorServer: nomeBandaCantor,
+                fkUsuarioServer: fkUsuario
+            }),
+        }).then(res => res.json())
+        
+    } else {
+        alert(`deu errado`)
+    }
+}
+async function musicaRecomendada(){
 
+    var musicRecomendada =await fetch ("/usuarios/musicaRecomendada", {
+
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(res => res.json())
+    var posicao = parseInt(Math.random()* (musicRecomendada.length ))
+    
+    console.log(musicRecomendada[posicao])
+}
+    
 
 </script>

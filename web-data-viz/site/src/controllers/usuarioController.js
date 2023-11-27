@@ -80,8 +80,10 @@ function cadastrar(req, res) {
     }
 }
 function jogoEncerrado(req,res){
-    var pontos = req.body.pontosServer;
-    usuarioModel.desafio(pontos)
+    var pontuacao = req.body.pontuacaoServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+    var dataAtual = req.body.dataAtualServer;
+    usuarioModel.jogoEncerrado( pontuacao, fkUsuario, dataAtual)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -101,9 +103,65 @@ function jogoEncerrado(req,res){
             );
 
 }
-
+function mostrarRanking(req,res){
+    usuarioModel.mostrarRanking()
+    .then(function(resultado){
+        if (resultado.length > 0 ){
+            res.status(200).json(resultado)
+        }else {
+            res.status(204).send("nenhum resultado encontrado")
+        }
+    }).catch(
+        function(erro) {
+            console.log(erro.sqlMessage)
+            res.status(500).json(erro.sqlMessage)
+        }
+    )
+}
+function recomendar(req,res){
+    var nomeMusica = req.body.nomeMusicaServer;
+    var nomeBandaCantor = req.body.nomeBandaCantorServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+    usuarioModel.recomendar(nomeMusica, nomeBandaCantor,fkUsuario)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+            )
+            if(erro.sqlMessage==`Duplicate entry '${email}' for key 'usuario.email'`){
+                res.status(400).json(erro.sqlMessage);
+            }else {
+            res.status(500).json(erro.sqlMessage);}
+        }
+    );
+    
+}
+function musicaRecomendada(req,res){
+    usuarioModel.musicaRecomendada()
+    .then(function(resultado){
+        if (resultado.length > 0 ){
+            res.status(200).json(resultado)
+        }else {
+            res.status(204).send("nenhum resultado encontrado")
+        }
+    }).catch(
+        function(erro) {
+            console.log(erro.sqlMessage)
+            res.status(500).json(erro.sqlMessage)
+        }
+    )
+}
 module.exports = {
     autenticar,
     cadastrar,
-    jogoEncerrado
+    jogoEncerrado,
+    mostrarRanking,
+    recomendar,
+    musicaRecomendada
 }

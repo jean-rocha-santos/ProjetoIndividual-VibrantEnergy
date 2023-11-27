@@ -47,6 +47,7 @@
                         <img class="imgOuvinte" src="img/cerebroDevoto.png" alt="">
                         <span id="pontuacao1">Pontuação: </span>
                     </div>
+                    
                     <div id="fraseVisitante">
                         <h2 class="subtituloQuiz">Você é um ouvinte VISITANTE!</h2>
                         <span>Você possui seus gostos que você não larga, más está aberto a coisas novas</span>
@@ -92,7 +93,7 @@
 </html>
 <script>
 
-    var pontos = 0
+    var pontuacao = 0
     var listaPergunta1 = ["ILUSÃO (CRACOLÂNDIA)", "PRETOS NA MIRA", "RICO OU POBRE", "ILUSÃO"]
     var listaPergunta2 = ["GUNS N' ROSES", "NIRVANA", "BON JOVI", "RED HOT CHILI PEPPERS"]
     var listaPergunta3 = ["Lugar ao sol", "Só os loucos sabem", "Livre", "Céu Azul"]
@@ -182,7 +183,7 @@
 
         })
         if (respostaClicada.dataset.correct) {
-            pontos += 1
+            pontuacao += 1
         }
     }
     var devoto = document.getElementById("fraseDevoto");
@@ -193,21 +194,30 @@
     function jogoEncerrado() {
         ouvinte.style.display = "flex"
         rankingDisplay.style.display = "flex"
-        if (pontos <= 3) {
+        if (pontuacao <= 3) {
             devoto.style.display = "flex"
-            pontuacao1.innerHTML += `${pontos}/10`
-        } else if (pontos <= 6) {
+            pontuacao1.innerHTML += `${pontuacao}/10`
+        } else if (pontuacao <= 6) {
             visitante.style.display = "flex"
-            pontuacao2.innerHTML += `${pontos}/10`
+            pontuacao2.innerHTML += `${pontuacao}/10`
         }
-        else if (pontos <= 9) {
+        else if (pontuacao <= 9) {
             especialista.style.display = "flex"
-            pontuacao3.innerHTML += `${pontos}/10`
+            pontuacao3.innerHTML += `${pontuacao}/10`
         } else {
             nomade.style.display = "flex"
-            pontuacao4.innerHTML += `${pontos}/10`
+            pontuacao4.innerHTML += `${pontuacao}/10`
         }
         // tentativa passar para banco
+        var fkUsuario = sessionStorage.getItem('ID_USUARIO')
+
+        const date = new Date();
+        const dia = date.getDate().toString();
+        const ano = date.getFullYear().toString();
+        const mes = (date.getMonth() + 1).toString();
+
+        const dataAtual = `${ano}-${mes}-${dia}`
+
 
         fetch("/usuarios/jogoEncerrado", {
             method: "POST",
@@ -217,9 +227,11 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                pontosServer: pontos
+                pontuacaoServer: pontuacao,
+                fkUsuarioServer: fkUsuario,
+                dataAtualServer: dataAtual
             }),
-        })
+        }) 
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
 
@@ -229,9 +241,9 @@
                     mensagem_erro.innerHTML =
                         "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
+                    // setTimeout(() => {
+                    //     window.location = "login.html";
+                    // }, "2000");
 
                 }
             })

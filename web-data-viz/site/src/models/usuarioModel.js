@@ -22,17 +22,34 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucao);
 }
 
-function jogoEncerrado(pontos) {
+function jogoEncerrado(pontuacao,fkUsuario, dataAtual) {
     var instrucao = `
-    INSERT INTO ranking (pontuacao) VALUES ('${pontos}');
+    INSERT INTO ranking (pontuacao, fkUsuario,dataTentativa) VALUES (${pontuacao},${fkUsuario},'${dataAtual}');
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-
+function mostrarRanking(){
+    var instrucao=`
+    select ranking.pontuacao,DATE_FORMAT(ranking.dataTentativa, '%d %m %y') as dataTentativa, usuario.nome from ranking inner join usuario on idUsuario=fkUsuario group by ranking.idRanking order by pontuacao desc limit 10 ;`;
+    return database.executar(instrucao);
+}
+function recomendar(nomeMusica, nomeBandaCantor, fkUsuario){
+    var instrucao=`
+    insert into recomendacao (nomeMusica, bandaCantor, fkUsuario) values ('${nomeMusica}','${nomeBandaCantor}', ${fkUsuario})`
+    return database.executar(instrucao);
+}
+function musicaRecomendada(){
+    var instrucao= `
+    select recomendacao.nomeMusica, recomendacao.bandaCantor, usuario.nome from recomendacao inner join usuario on fkUsuario=idUsuario;`
+    return database.executar(instrucao);
+}
 module.exports = {
     autenticar,
     cadastrar,
     jogoEncerrado,
+    mostrarRanking,
+    recomendar,
+    musicaRecomendada
 };
