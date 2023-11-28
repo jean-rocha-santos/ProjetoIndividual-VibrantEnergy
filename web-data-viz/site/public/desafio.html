@@ -92,7 +92,7 @@
 
 </html>
 <script>
-
+    var tipoUsuario = ""
     var pontuacao = 0
     var listaPergunta1 = ["ILUSÃO (CRACOLÂNDIA)", "PRETOS NA MIRA", "RICO OU POBRE", "ILUSÃO"]
     var listaPergunta2 = ["GUNS N' ROSES", "NIRVANA", "BON JOVI", "RED HOT CHILI PEPPERS"]
@@ -191,20 +191,25 @@
     var especialista = document.getElementById("fraseEspecialista");
     var nomade = document.getElementById("fraseNomade");
 
+    
     function jogoEncerrado() {
         ouvinte.style.display = "flex"
         rankingDisplay.style.display = "flex"
         if (pontuacao <= 3) {
+            tipoUsuario = "Devoto"
             devoto.style.display = "flex"
             pontuacao1.innerHTML += `${pontuacao}/10`
         } else if (pontuacao <= 6) {
+             tipoUsuario = "Visitante"
             visitante.style.display = "flex"
             pontuacao2.innerHTML += `${pontuacao}/10`
         }
         else if (pontuacao <= 9) {
+            tipoUsuario = "Especialista"
             especialista.style.display = "flex"
             pontuacao3.innerHTML += `${pontuacao}/10`
         } else {
+            tipoUsuario = "Nomade"
             nomade.style.display = "flex"
             pontuacao4.innerHTML += `${pontuacao}/10`
         }
@@ -229,7 +234,9 @@
                 // Agora vá para o arquivo routes/usuario.js
                 pontuacaoServer: pontuacao,
                 fkUsuarioServer: fkUsuario,
-                dataAtualServer: dataAtual
+                dataAtualServer: dataAtual,
+                tipoUsuarioServer: tipoUsuario
+
             }),
         }) 
             .then(function (resposta) {

@@ -2,6 +2,7 @@ create database vibrantEnergy;
 use vibrantEnergy;
 
 
+
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
@@ -13,9 +14,9 @@ create table ranking (
 idRanking int primary key auto_increment  ,
 pontuacao int,
 dataTentativa date, 
+tipoUsuario varchar(45),
 fkUsuario int , constraint fkUsuario foreign key (fkUsuario)
 references usuario(idUsuario));
-
 
 
 create table recomendacao (

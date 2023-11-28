@@ -83,7 +83,8 @@ function jogoEncerrado(req,res){
     var pontuacao = req.body.pontuacaoServer;
     var fkUsuario = req.body.fkUsuarioServer;
     var dataAtual = req.body.dataAtualServer;
-    usuarioModel.jogoEncerrado( pontuacao, fkUsuario, dataAtual)
+    var tipoUsuario = req.body.tipoUsuarioServer;
+    usuarioModel.jogoEncerrado( pontuacao, fkUsuario, tipoUsuario,dataAtual )
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -122,6 +123,7 @@ function recomendar(req,res){
     var nomeMusica = req.body.nomeMusicaServer;
     var nomeBandaCantor = req.body.nomeBandaCantorServer;
     var fkUsuario = req.body.fkUsuarioServer;
+    
     usuarioModel.recomendar(nomeMusica, nomeBandaCantor,fkUsuario)
     .then(
         function (resultado) {
