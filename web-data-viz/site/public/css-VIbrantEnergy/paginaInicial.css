@@ -4,8 +4,8 @@
     color: white;
     box-sizing: border-box;
     padding: 0%;
-    
-    
+
+
 }
 
 body {
@@ -14,7 +14,8 @@ body {
     background-repeat: no-repeat;
     height: 100vh;
 }
- .header {
+
+.header {
     display: flex;
     height: 15vh;
     width: 100%;
@@ -24,7 +25,7 @@ body {
 }
 
 .header .container {
-   
+
     font-size: 4vh;
 
 
@@ -53,9 +54,10 @@ a {
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
+
 a:hover {
     transition: 1s;
-    box-shadow: #ec465c  0 0 8px 8px;
+    box-shadow: #ec465c 0 0 8px 8px;
     transform: scale(1.8);
     background-color: #1b0b39;
     border-radius: 30px 2px 30px 2px;
@@ -95,19 +97,131 @@ a:hover {
 
     }
 }
-.texto .subTitulo{
+
+.texto .subTitulo {
     font-size: 37px;
-    
-} 
+
+}
 
 .paginaInicial .banner {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
+
+
 }
+
 .paginaInicial .banner .imagem {
     position: relative;
     top: 50px;
+
+
+}
+
+#recomendada {
+    display: flex;
+    /* border: 2px solid wheat; */
+    width: 50%;
+    font-size: 20px;
+    height: 100px;
+    text-align: center;
+    border-radius: 16px;
+    justify-content: center;
+}
+
+
+@keyframes mudarCorRecomendacao {
+    12.5% {
+        box-shadow: #6e38cd 0 0 500px 100px;
+        /* background-color: #6e38cd; */
+
+    }
+
+    25% {
+        box-shadow: yellow 0 25px 500px 50px;
+        /* background-color: yellow; */
+
+    }
+
+    37.5% {
+        box-shadow: #ec465c 0 50px 500px 50px;
+        /* background-color: #ec465c; */
+
+    }
+
+    50% {
+        box-shadow: #b14313 0 25px 500px 50px;
+        /* background-color: #b14313; */
+
+    }
+
+    62.5% {
+        box-shadow: red 0 0 500px 50px;
+        /* background-color: red; */
+
+    }
+
+    75% {
+        box-shadow: orangered 0 -25px 500px 50px;
+        /* background-color: orangered; */
+
+    }
+
+    87.5% {
+        box-shadow: rgb(114, 24, 111) 0 -20px 500px 50px;
+        /* background-color: rgb(114, 24, 111); */
+
+    }
+
+    100% {
+        box-shadow: #6e38cd 0 -5px 500px 100px;
+        /* background-color: #6e38cd; */
+
+    }
+}
+
+.recomendacao {
+    display: flex;
+    justify-content: space-evenly;
+    width: 800px;
+
+}
+
+#indicar {
+    position: absolute;
+    left: 0px;
+    bottom: -120px;
+
+    border-radius:70px 10px 50px 10px;
+    height: 120px;
+    /* animation: mudarCorRecomendacao 13s infinite; */
+    box-shadow: #ec465c77 15px 10px 5px 3px;
+    padding: 6px;
+    background-color: #ec465c;
+    border: 2px solid black;
+    transition: 5s;
+}
+#indicar:hover{
+    right: 500px ;
+}
+
+.texto {
+    height: 300px;
+}
+.setaCima{
+    height: 100px;
+    position: relative;
+    transition: none;  
+    box-shadow: none;
+    transform: none;
     
+}
+.setaCima:hover{
+    transition: 0.2s;
+    box-shadow: #ec465c 0 0 8px 8px;
+    transform: scale(1.1);
+    background-color: #1b0b39;
+    border-radius: 30px 2px 30px 2px;
+    border: 0;
+    padding: 5px;
 }

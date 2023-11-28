@@ -32,7 +32,7 @@ function jogoEncerrado(pontuacao, fkUsuario, tipoUsuario, dataAtual) {
 }
 function mostrarRanking() {
     var instrucao = `
-    select ranking.pontuacao,DATE_FORMAT(ranking.dataTentativa, '%d %m %y') as dataTentativa, ranking.tipoUsuario, usuario.nome from ranking inner join usuario on idUsuario=fkUsuario group by ranking.idRanking order by pontuacao desc limit 5 ;`;
+    select ranking.pontuacao,DATE_FORMAT(ranking.dataTentativa, '%d-%m-%y') as dataTentativa, ranking.tipoUsuario, usuario.nome from ranking inner join usuario on idUsuario=fkUsuario group by ranking.idRanking order by pontuacao desc limit 10  ;`;
     return database.executar(instrucao);
 }
 function recomendar(nomeMusica, nomeBandaCantor, fkUsuario) {
@@ -42,7 +42,7 @@ function recomendar(nomeMusica, nomeBandaCantor, fkUsuario) {
 }
 function musicaRecomendada() {
     var instrucao = `
-    select recomendacao.nomeMusica, recomendacao.bandaCantor, usuario.nome from recomendacao inner join usuario on fkUsuario=idUsuario;`
+    select recomendacao.nomeMusica, recomendacao.bandaCantor, usuario.nome from recomendacao inner join usuario on fkUsuario=idUsuario ;`
     return database.executar(instrucao);
 }
 module.exports = {

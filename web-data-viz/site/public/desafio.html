@@ -47,7 +47,7 @@
                         <img class="imgOuvinte" src="img/cerebroDevoto.png" alt="">
                         <span id="pontuacao1">Pontuação: </span>
                     </div>
-                    
+
                     <div id="fraseVisitante">
                         <h2 class="subtituloQuiz">Você é um ouvinte VISITANTE!</h2>
                         <span>Você possui seus gostos que você não larga, más está aberto a coisas novas</span>
@@ -56,13 +56,13 @@
                     </div>
                     <div id="fraseEspecialista">
                         <h2 class="subtituloQuiz">Você é um ouvinte ESPECIALISTA!</h2>
-                        <span> tem muito conhecimento sobre todos os estilos.</span>
+                        <span> Tem muito conhecimento sobre todos os estilos.</span>
                         <img class="imgOuvinte" src="img/cerebroEspecialista.png" alt="">
                         <span id="pontuacao3">Pontuação: </span>
                     </div>
                     <div id="fraseNomade">
                         <h2 class="subtituloQuiz">Você é um ouvinte NOMADE! </h2>
-                        <span>não escuta somente um estilo de música, você não para, demonstrou ter dominio sobre todos
+                        <span>Não se contenta em ficar parado, você não para, demonstrou ter dominio sobre todos
                             estilos !</span>
                         <img class="imgOuvinte" src="img/cerebroNomade.png" alt="">
                         <span id="pontuacao4">Pontuação: </span>
@@ -121,10 +121,16 @@
     var ouvinte = document.getElementById("tipoOuvinte")
     var rankingDisplay = document.getElementById("linkRank")
     function iniciar() {
-        inicioDesafio.style.display = "none";
-        desocultar.style.display = "block"
-        desocultar2.style.display = "block"
-        rankingDisplay.style.display = "none"
+        var fkUsuario = sessionStorage.getItem('ID_USUARIO')
+        if (fkUsuario > 0) {
+
+            inicioDesafio.style.display = "none";
+            desocultar.style.display = "block"
+            desocultar2.style.display = "block"
+            rankingDisplay.style.display = "none"
+        } else {
+            alert(`Você precisa estar logado para fazer começar o desafio`)
+        }
     }
 
     function proximaPergunta() {
@@ -191,8 +197,9 @@
     var especialista = document.getElementById("fraseEspecialista");
     var nomade = document.getElementById("fraseNomade");
 
-    
+
     function jogoEncerrado() {
+        
         ouvinte.style.display = "flex"
         rankingDisplay.style.display = "flex"
         if (pontuacao <= 3) {
@@ -200,7 +207,7 @@
             devoto.style.display = "flex"
             pontuacao1.innerHTML += `${pontuacao}/10`
         } else if (pontuacao <= 6) {
-             tipoUsuario = "Visitante"
+            tipoUsuario = "Visitante"
             visitante.style.display = "flex"
             pontuacao2.innerHTML += `${pontuacao}/10`
         }
@@ -215,7 +222,8 @@
         }
         // tentativa passar para banco
         var fkUsuario = sessionStorage.getItem('ID_USUARIO')
-
+        var pontuacaoVerificacao = sessionStorage.getItem('PONTUACAO_USUARIO')
+        sessionStorage.PONTUACAO_USUARIO += 0
         const date = new Date();
         const dia = date.getDate().toString();
         const ano = date.getFullYear().toString();
@@ -223,37 +231,40 @@
 
         const dataAtual = `${ano}-${mes}-${dia}`
 
+        if (pontuacaoVerificacao < 3) {
+            fetch("/usuarios/jogoEncerrado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    pontuacaoServer: pontuacao,
+                    fkUsuarioServer: fkUsuario,
+                    dataAtualServer: dataAtual,
+                    tipoUsuarioServer: tipoUsuario
 
-        fetch("/usuarios/jogoEncerrado", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                pontuacaoServer: pontuacao,
-                fkUsuarioServer: fkUsuario,
-                dataAtualServer: dataAtual,
-                tipoUsuarioServer: tipoUsuario
-
-            }),
-        }) 
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    cardErro.style.display = "block";
-
-                    mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                    // setTimeout(() => {
-                    //     window.location = "login.html";
-                    // }, "2000");
-
-                }
+                }),
             })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    if (resposta.ok) {
+                        sessionStorage.PONTUACAO_USUARIO += 1
+                        
+
+                        mensagem_erro.innerHTML =
+                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                        // setTimeout(() => {
+                        //     window.location = "login.html";
+                        // }, "2000");
+
+                    }
+                })
+        } else {
+            alert(`Sua pontuação só é registrada em sua primeira tentativa, confira no ranking em qual posição está !`)
+        }
     }
     const listaPerguntas = [
         {

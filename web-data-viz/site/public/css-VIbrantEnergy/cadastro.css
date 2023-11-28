@@ -11,6 +11,7 @@
     display: flex;
     height: 160px;
     justify-content: end;
+    margin-right: 110px;
 }
 
 .cardCadastro {
@@ -35,7 +36,7 @@
 
 }
 
-.containerCadastro .texto h2 {
+.containerCadastro .textoCadastro h2 {
     animation: mudarCor2 5s infinite;
 
 }

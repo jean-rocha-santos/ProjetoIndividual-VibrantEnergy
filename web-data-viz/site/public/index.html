@@ -13,7 +13,7 @@
 </head>
 
 <body onload="musicaRecomendada()">
-    <div class="home">
+    <div class="home" id="home">
         <div class="header">
             <div class="logo">
                 <img src="img/camelia-flor.png" alt="Logo VibrantEnergy">
@@ -37,12 +37,18 @@
                         <h2 class="subTitulo">A música faz parte da sua vida? </h2><br><br><br>
 
                         <div class="recomendacao">
-                            <h3>Recomende você também uma música!</h3><br>
-                            <input type="text" class="input" placeholder="Nome da musica" id="input_nomeMusica"><br><br>
-                            <input type="text" class="input" placeholder="Nome do cantor ou banda"
-                                id="input_nomeCantor"><br><br>
+                            <div class="input_recomendacao">
+                                <h3>Recomende você também uma música!</h3><br>
+                                <input type="text" class="input" placeholder="Nome da musica"
+                                    id="input_nomeMusica"><br><br>
+                                <input type="text" class="input" placeholder="Nome do cantor ou banda"
+                                    id="input_nomeCantor"><br><br>
                                 <button onclick="recomendar()" class="botao">Recomendar</button>
+                            </div>
+                            <div id="recomendada">
+                                <span id="indicar"></span>
 
+                            </div>
 
                         </div>
                     </div>
@@ -139,49 +145,52 @@
 
                 </div>
 
+                <a href="#home" class="setaCima" ><img src="img/setaCima.png" alt="" class="setaCima"></a>
             </div>
 
         </div>
-
     </div>
 </body>
 
 </html>
 <script>
-    function recomendar(){
+    function recomendar() {
         var fkUsuario = sessionStorage.getItem('ID_USUARIO')
-        var nomeMusica= input_nomeMusica.value;
-        var nomeBandaCantor= input_nomeCantor.value;
-        if (fkUsuario >0){
-        fetch("/usuarios/recomendar", {
-            method: "POST",
-            headers:  {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nomeMusicaServer: nomeMusica,
-                nomeBandaCantorServer: nomeBandaCantor,
-                fkUsuarioServer: fkUsuario
-            }),
-        }).then(res => res.json())
-        
-    } else {
-        alert(`deu errado`)
-    }
-}
-async function musicaRecomendada(){
-
-    var musicRecomendada =await fetch ("/usuarios/musicaRecomendada", {
-
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
+        var nomeMusica = input_nomeMusica.value;
+        var nomeBandaCantor = input_nomeCantor.value;
+        if (fkUsuario > 0) {
+            fetch("/usuarios/recomendar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeMusicaServer: nomeMusica,
+                    nomeBandaCantorServer: nomeBandaCantor,
+                    fkUsuarioServer: fkUsuario
+                }),
+            }).then(res => res.json())
+            
+        } else {
+            alert(`Você precisa estar logado para recomendar uma música`)
         }
-    }).then(res => res.json())
-    var posicao = parseInt(Math.random()* (musicRecomendada.length ))
-    
-    console.log(musicRecomendada[posicao])
-}
-    
+    }
+    async function musicaRecomendada() {
+
+        var recomendacao = await fetch("/usuarios/musicaRecomendada", {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(res => res.json())
+        var posicao = parseInt(Math.random() * (recomendacao.length ))
+        console.log(recomendacao[posicao])
+        indicacao(recomendacao[posicao])
+    }
+    function indicacao(indica) {
+        indicar.innerHTML = 'Usúario: ' + indica.nome + '<br> Música: ' + indica.nomeMusica + '<br> Cantor/Banda: ' + indica.bandaCantor
+    }
+
 
 </script>

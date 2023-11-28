@@ -32,12 +32,12 @@
     <div class="containerRanking">
         <div class="kpis">
             <div class="fomularioKpi1">
-                <div class="cardKpi" id="cardDevoto"> <img src="img/cerebroDevoto.png" class="iconTipoUsuario" alt=""> Quantidade DEVOTO <br></div>
-                <div class="cardKpi" id="cardVisitante"><img src="img/cerebroVisitante.png" class="iconTipoUsuario" alt=""> Quantidade VISITANTE <br></div>
+                <div class="cardKpi" id="cardDevoto">  </div>
+                <div class="cardKpi" id="cardVisitante"> </div>
             </div>
             <div class="fomularioKpi2">
-                <div class="cardKpi" id="cardEspecialista"> <img src="img/cerebroEspecialista.png" class="iconTipoUsuario" alt=""> Quantidade ESPECIALISTA <br></div>
-                <div class="cardKpi" id="cardNomade"> <img src="img/cerebroNomade.png" class="iconTipoUsuario" alt=""> Quantidade Nomade <br></div>
+                <div class="cardKpi" id="cardEspecialista"> </div>
+                <div class="cardKpi" id="cardNomade">  </div>
             </div>
         </div>
         <div class="ranking">
@@ -47,27 +47,27 @@
             <div class="formulario" id="div_exibir" style="color: white;">
 
                 <div class="rankingQuiz">
-                    <div id="posicaoRanking"> Posicão <br>
-                        <div id="posicaoUsuario">1 <br><br>2 <br><br> 3 <br><br> 4 <br><br> 5 <br><br>
+                    <div id="posicaoRanking"> Posicão <br><br>
+                        <div id="posicaoUsuario">1- <br><br>2- <br><br> 3- <br><br> 4- <br><br> 5- <br><br> 6- <br><br> 7- <br><br> 8- <br> <br> 9- <br><br> 10- <br><br>
                         </div>
                     </div>
-                    <div class="campoRank" id="nomeUsuario">Nome usuário <br>
+                    <div class="campoRank" id="nomeUsuario">Nome usuário <br> <br>
                         <div id="nomeRank"></div>
                     </div>
-                    <div class="campoRank" id="pontosFeitos">Pontos <br>
+                    <div class="campoRank" id="pontosFeitos">Pontos <br> <br>
                         <div id="pontosRank"></div>
                     </div>
-                    <div class="campoRank" id="tipoOuvintes">Tipo Ouvinte <br>
+                    <div class="campoRank" id="tipoOuvintes">Tipo Ouvinte <br> <br>
                         <div id="tipoRank"></div>
                     </div>
 
-                    <div class="campoRank" id="dataTentativa">Data Tentativa <br>
+                    <div class="campoRank" id="dataTentativa">Data Tentativa <br><br>
                         <div id="dataTentativaRank"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <img src="img/rankFundo.jpeg" class="fundoRank" alt=""> -->
+        <img src="img/rankFundo (2).jpeg  " class="fundoRank" alt="" style="opacity: 0.4;">
 
 </body>
 
@@ -88,31 +88,39 @@
         }
     }
 
-
+    var pontosDevotos =0
+    var pontosVisitante =0
+    var pontosEspecialista =0
+    var pontosNomade =0
+    
     function resultadoRanking(rank) {
 
-        console.log(rank)
+        // console.log(rank)
 
         nomeRank.innerHTML += `${rank.nome}<br><br>`
         pontosRank.innerHTML += `${rank.pontuacao}<br><br>`
         dataTentativaRank.innerHTML += `${rank.dataTentativa}<br><br>`
         tipoRank.innerHTML+= `${rank.tipoUsuario}<br><br>`
-        // for (QtdNomade = 0; QtdNomade<rank.tipoUsuario;QtdNomade+=1){
+        
             if (rank.tipoUsuario=="Devoto"){
-                cardDevoto.innerHTML+= 1
+                pontosDevotos +=1
+                cardDevoto.innerHTML= ' Quantidade <br> DEVOTO <br>' +pontosDevotos 
             }
             if (rank.tipoUsuario=="Visitante"){
-                cardVisitante.innerHTML+=1
+                pontosVisitante+=1
+                cardVisitante.innerHTML= 'Quantidade <br> VISITANTE <br>'+pontosVisitante 
             }
             if (rank.tipoUsuario=="Especialista"){
-                cardEspecialista.innerHTML+=1
+                pontosEspecialista+=1
+                cardEspecialista.innerHTML= '  Quantidade ESPECIALISTA <br>'+pontosEspecialista 
             }
             if (rank.tipoUsuario=="Nomade"){
-                cardNomade.innerHTML+=1
+                pontosNomade+=1
+                cardNomade.innerHTML='   Quantidade <br> NOMADE <br>'+ pontosNomade 
             }
             
         }
-    // }
+   
 
 
 </script>

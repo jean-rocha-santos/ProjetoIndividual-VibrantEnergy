@@ -3,6 +3,7 @@ use vibrantEnergy;
 
 
 
+
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
@@ -15,9 +16,13 @@ idRanking int primary key auto_increment  ,
 pontuacao int,
 dataTentativa date, 
 tipoUsuario varchar(45),
-fkUsuario int , constraint fkUsuario foreign key (fkUsuario)
+fkUsuario int unique, constraint fkUsuario foreign key (fkUsuario)
 references usuario(idUsuario));
 
+show INDEX from ranking;
+select * from ranking;
+
+delete from ranking where idRanking = 8;
 
 create table recomendacao (
 idRecomendacao int auto_increment,
@@ -39,12 +44,15 @@ join ranking on idUsuario=fkUsuario;
 select * from usuario 
 join recomendacao on idUsuario=fkUsuario;
 
-select * from usuario
-join recomendacao on idUsuario=fkUsuario 
-join ranking on idUsuario=ranking.fkUsuario;
+select * from usuario;
 
-select ranking.pontuacao,ranking.dataTentativa, usuario.nome from ranking inner join usuario on idUsuario=fkUsuario
+delete from usuario where idUsuario=9;
+
+
+
+select ranking.pontuacao,ranking.dataTentativa, count(distinct(usuario.nome)) from ranking inner join usuario on idUsuario=fkUsuario
 group by ranking.idRanking
  order by pontuacao desc limit 10 ;
+
 
 
