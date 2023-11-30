@@ -1,9 +1,6 @@
 create database vibrantEnergy;
 use vibrantEnergy;
 
-
-
-
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
@@ -37,6 +34,7 @@ auto_increment= 1000;
 select * from usuario;
 select * from ranking;
 select * from recomendacao;
+delete from recomendacao where idRecomendacao= 1003;
 
 select * from usuario 
 join ranking on idUsuario=fkUsuario;
@@ -54,5 +52,8 @@ select ranking.pontuacao,ranking.dataTentativa, count(distinct(usuario.nome)) fr
 group by ranking.idRanking
  order by pontuacao desc limit 10 ;
 
+select recomendacao.nomeMusica, recomendacao.bandaCantor, usuario.nome from recomendacao inner join usuario on fkUsuario=idUsuario ;
 
-
+select ranking.pontuacao,DATE_FORMAT(ranking.dataTentativa, '%d-%m-%y') as dataTentativa, ranking.tipoUsuario, usuario.nome
+ from ranking inner join usuario on idUsuario=fkUsuario
+ group by ranking.idRanking order by pontuacao desc;

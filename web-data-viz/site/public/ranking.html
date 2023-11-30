@@ -93,15 +93,16 @@
     var pontosEspecialista =0
     var pontosNomade =0
     
+    var maximoRank = 0
     function resultadoRanking(rank) {
-
-        // console.log(rank)
-
+        
+        if (maximoRank <10){
         nomeRank.innerHTML += `${rank.nome}<br><br>`
         pontosRank.innerHTML += `${rank.pontuacao}<br><br>`
         dataTentativaRank.innerHTML += `${rank.dataTentativa}<br><br>`
         tipoRank.innerHTML+= `${rank.tipoUsuario}<br><br>`
-        
+        maximoRank+=1
+    }
             if (rank.tipoUsuario=="Devoto"){
                 pontosDevotos +=1
                 cardDevoto.innerHTML= ' Quantidade <br> DEVOTO <br>' +pontosDevotos 
