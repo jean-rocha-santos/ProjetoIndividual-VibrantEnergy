@@ -128,3 +128,7 @@
     
     
 }
+.login .card_erro{
+    position: absolute;
+    left: 600px;
+}

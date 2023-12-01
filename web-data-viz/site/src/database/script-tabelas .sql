@@ -57,3 +57,9 @@ select recomendacao.nomeMusica, recomendacao.bandaCantor, usuario.nome from reco
 select ranking.pontuacao,DATE_FORMAT(ranking.dataTentativa, '%d-%m-%y') as dataTentativa, ranking.tipoUsuario, usuario.nome
  from ranking inner join usuario on idUsuario=fkUsuario
  group by ranking.idRanking order by pontuacao desc;
+ 
+  SELECT idUsuario, nome, email  FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+  
+  INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+  
+  INSERT INTO ranking (pontuacao, fkUsuario,tipoUsuario,dataTentativa) VALUES ('${pontuacao}','${fkUsuario}','${tipoUsuario}','${dataAtual}');

@@ -207,23 +207,8 @@ a:hover {
 .texto {
     height: 300px;
 }
-.setaCima{
-    height: 100px;
-    position: relative;
-    transition: none;  
-    box-shadow: none;
-    transform: none;
-    
-}
-.setaCima:hover{
-    transition: 0.2s;
-    box-shadow: #ec465c 0 0 8px 8px;
-    transform: scale(1.1);
-    background-color: #1b0b39;
-    border-radius: 30px 2px 30px 2px;
-    border: 0;
-    padding: 5px;
-}
+
+
 .footer{
     height:240px ;
     width: 100%;
@@ -231,21 +216,27 @@ a:hover {
     border-top: 2px solid black;
     justify-content: space-evenly;
     display: flex;
+    
 
 }
-.redes{
+.redesFooter{
     display: flex;
     flex-direction: column;
     justify-self: center;
     justify-items: center;
+    justify-content: space-around;
 }
-.iconIMG a:hover{
-    transform: none;
+.iconIMG {
+    position: relative;
+    width: 40px;
+    left: 40px;
+    
 }
+
 .contato{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 .menu{
     display: flex;
